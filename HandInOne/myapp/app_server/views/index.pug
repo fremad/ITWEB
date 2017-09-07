@@ -4,7 +4,11 @@ block content
     
     .container
         h1 Welcome to #{title}
-    
+        p#results hi
+        button.btn.btn-info#my-btn(onclick='myfunc()') MyButton
+        #div1
+
+
         .options
             button.btn.btn-primary.btn-lg(type='button' data-toggle='modal' data-target='#myModal') New workout
             button.btn.btn-info.btn-lg(type='button' onclick='myfunc()') Check javascript
@@ -12,22 +16,23 @@ block content
         .modal.fade#myModal(role='dialog')
             .modal-dialog.modal-lg
                 .modal-content
-                    .modal-header.modal-header-primary
+                    .modal-header.modal-header-danger
                         button.close(type='button' data-dismiss='modal') &times
                         h4.modal-title New Workout
                     .modal-body
-                        .form-group
-                            label(for='message-text').form-control-label Workout Name:
-                            input(type="text" placeholder="Workout name...").form-control#workout-desctextbox
-                        .form-group
-                            label(for='').form-control-label Exercise
-                            input(type="text" placeholder="Exercise name..." required).form-control
-                            label(for='').form-control-label Description
-                            input(type="text" placeholder="Exercise description...").form-control
-                            label(for='').form-control-label Sets
-                            input(type="number" placeholder="Nr of sets").form-control
-                            label(for='').form-control-label Exercise
-                            input(type="number" placeholder="Nr of reps").form-control
-                    .modal-footer
-                        button(type='submit').btn.btn-primary Submit
-                        button(type='button' data-dismiss='modal').btn.btn-default Close
+                        form.my-form
+                            .form-group
+                                label(for='message-text').form-control-label Workout Name:
+                                input(type="text" placeholder="Workout name..." required).form-control#workout-desctextbox
+                            .form-group
+                                label(for='').form-control-label Exercise
+                                input(type="text" placeholder="Exercise name..." required).form-control
+                                label(for='').form-control-label Description
+                                input(type="text" placeholder="Exercise description..." required).form-control
+                                label(for='').form-control-label Sets
+                                input(type="number" placeholder="Nr of sets").form-control
+                                label(for='').form-control-label Exercise
+                                input(type="number" placeholder="Nr of reps").form-control
+                            .modal-footer
+                                input(type='submit' value='Submit').btn.btn-primary
+                                button(type='button' data-dismiss='modal').btn.btn-default Close
