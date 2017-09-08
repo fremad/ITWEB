@@ -4,8 +4,10 @@ var homecontroller = require("../controllers/home");
 
 /* GET home page. */
   router.get('/', homecontroller.index)
-  router.get('/data',homecontroller.data)
-  
+  router
+    .route('/data')
+      .get(homecontroller.data)
+      .post(homecontroller.post)
 /* router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 }); */
