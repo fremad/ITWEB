@@ -12,8 +12,10 @@ module.exports.index = function(req, res){
 
   module.exports.post = function(req, res){
     
+    var input = req.body.name;
+
     var myvar = {
-      name: 'Anna'
+      name: input
     };
     res.json(JSON.stringify(myvar))
   };
