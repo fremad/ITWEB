@@ -3,37 +3,73 @@ extends layout
 block content
     
     .container
+        
         h1 Welcome to #{title}
-        p#results hi
-        button.btn.btn-info#my-btn(onclick='myfunc()') Get
-        button.btn.btn-info#my-btn(onclick='postfunc()') post
-        #div1
-
-
+        //- p#results hi
+        //- button.btn.btn-info#my-btn(onclick='myfunc()') Get
+        //- button.btn.btn-info#my-btn(onclick='postfunc()') post
+        //- #div1
+        
         .options
-            button.btn.btn-primary.btn-lg(type='button' data-toggle='modal' data-target='#myModal') New workout
-            button.btn.btn-info.btn-lg(type='button' onclick='myfunc()') Check javascript
+            //- button.btn.btn-primary.btn-lg(type='button' data-toggle='modal' data-target='#myModal') New workout
+            
+            
+            form.col-md-12
+                .form-group.col-md-6
+                    button.btn.btn-info.btn-lg(type='button' onclick='postfunc()') New workout
+                    <input class="form-control" name="name" id="ex1" placeholder="Workout name..." type="text" required>
 
-        .modal.fade#myModal(role='dialog')
-            .modal-dialog.modal-lg
-                .modal-content
-                    .modal-header.modal-header-danger
-                        button.close(type='button' data-dismiss='modal') &times
-                        h4.modal-title New Workout
-                    .modal-body
-                        form.my-form
-                            .form-group
-                                label(for='message-text').form-control-label Workout Name:
-                                input(type="text" placeholder="Workout name..." required).form-control#workout-desctextbox
-                            .form-group
-                                label(for='').form-control-label Exercise
-                                input(type="text" placeholder="Exercise name..." required).form-control
-                                label(for='').form-control-label Description
-                                input(type="text" placeholder="Exercise description..." required).form-control
-                                label(for='').form-control-label Sets
-                                input(type="number" placeholder="Nr of sets").form-control
-                                label(for='').form-control-label Exercise
-                                input(type="number" placeholder="Nr of reps").form-control
-                            .modal-footer
-                                input(type='submit' value='Submit').btn.btn-primary
-                                button(type='button' data-dismiss='modal').btn.btn-default Close
+
+        - var values = names;
+        ul
+            each val in values
+                a(href="http://localhost:3000/data/" + val._id)= val.name 
+                //- li= val.name
+                    //- ul
+                    //-     each item in val.exercises
+                    //-         .row
+                    //-             form
+                    //-                 .form-group.col-md-6
+                    //-                     button.btn.btn-info.btn-lg(type='button' onclick='postexercise('+item._id+')' name=item._id) New Exercise
+                                    
+                    //-                     <input class="form-control" name="exercise" placeholder="Exercise name..." type="text" required>
+                    //-                     <input class="form-control" name="description" placeholder="description..." type="text" required>
+                    //-                     <input class="form-control" name="sets" placeholder="sets..." type="text" required>
+                    //-                     <input class="form-control" name="reps" placeholder="reps..." type="text" required>
+
+
+                    //-         li= item._id
+                    //-         li= item.exercise
+                    //-         li= item.description
+                    //-         li= item.exset
+                    //-         li= item.reps
+                    //-         p= "----------------"
+                    //-     else
+                    //-         li There are no values
+            else
+                li There are no values
+
+        //- .modal.fade#myModal(role='dialog')
+        //-     .modal-dialog.modal-lg
+        //-         .modal-content
+        //-             .modal-header.modal-header-danger
+        //-                 button.close(type='button' data-dismiss='modal') &times
+        //-                 h4.modal-title New Workout
+        //-             .modal-body
+        //-                 form.my-form
+        //-                     .form-group
+        //-                         label(for='message-text').form-control-label Workout Name:
+        //-                         input(type="text" placeholder="Workout name..." required).form-control#workout-desctextbox
+        //-                     .form-group
+        //-                         label(for='').form-control-label Exercise
+        //-                         input(type="text" placeholder="Exercise name..." required).form-control
+        //-                         label(for='').form-control-label Description
+        //-                         input(type="text" placeholder="Exercise description..." required).form-control
+        //-                         label(for='').form-control-label Sets
+        //-                         input(type="number" placeholder="Nr of sets").form-control
+        //-                         label(for='').form-control-label Exercise
+        //-                         input(type="number" placeholder="Nr of reps").form-control
+        //-                     .modal-footer
+        //-                         input(type='submit' value='Submit').btn.btn-primary
+        //-                         button(type='button' data-dismiss='modal').btn.btn-default Close
+                    

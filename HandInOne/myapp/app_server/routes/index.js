@@ -11,5 +11,6 @@ var homecontroller = require("../controllers/home");
 /* router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 }); */
-
+  
+router.get('/data/:workoutid', homecontroller.singleworkout)
 module.exports = router;

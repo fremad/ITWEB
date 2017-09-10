@@ -6,33 +6,56 @@ var sendJSONresponse = function(res, status, content) {
     res.json(content);
   };
 
-module.exports.index = function(req, res){
-    /* var myvar = {
-      name: "hanna"
-    }; */
+module.exports.getOne = function(req, res){
+
+  console.log('Finding location details', req.params);
+  if (req.params && req.params.workoutid) {
+    wor
+      .findById(req.params.workoutid)
+      .exec(function(err, workout) {
+        if (!workout) {
+          sendJSONresponse(res, 404, {
+            "message": "workoutid not found"
+          });
+          return;
+        } else if (err) {
+          console.log(err);
+          sendJSONresponse(res, 404, err);
+          return;
+        }
+        console.log(workout);
+        sendJSONresponse(res, 200, workout);
+      });
+  } else {
+    console.log('No workoutid specified');
+    sendJSONresponse(res, 404, {
+      "message": "No workoutid in request"
+    });
+}
+  };
+
+  module.exports.index = function(req, res){
     wor.find().exec(function(err, workout){
-        
+      
         res.status(200);
-        res.json(JSON.stringify(workout))
+        res.json(workout);
+        
     })
   };
-  
-
 
   /* POST a new location */
 /* /api/locations */
 module.exports.post = function(req, res) {
     console.log(req.body);
     wor.create({
-      name: req.body.name,
-      surname: req.body.surname,
+      name: req.body.name
       }
     , function(err, workout) {
       if (err) {
         console.log(err);
         sendJSONresponse(res, 400, err);
       } else {
-        console.log(location);
+        console.log(workout);
         sendJSONresponse(res, 201, workout);
       }
     });

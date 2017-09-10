@@ -2,7 +2,6 @@ function myfunc(){
     window.console.log("called get");
     $.ajax({
         url: "http://localhost:3000/data",
-        method:'GET',
         error: function(){
             window.console.log("An Error occured");
         },
@@ -14,24 +13,60 @@ function myfunc(){
       });
 };
 
-var formdata = {name:"Hans"}
 
 function postfunc(){
-    window.console.log("called post");
+    var formdata = {name: $('#ex1').val()}
+    
+    JSON.stringify();
+
+    window.console.log(formdata);
     $.ajax({
-        url: "http://localhost:3000/data",
+        url: "http://localhost:3000/api",
         method:'POST',
         data: formdata,
         error: function(jqXHR, textStatus, errorThrown){
             window.console.log("An Error occured");
+            window.console.log(errorThrown);
         },
         success: function(data, textStatus, jqXHR){
             window.console.log(data)
-            var tmp = JSON.parse(data)
-          $("#results").append(tmp.name);
         }
       });
 }
+
+
+
+function postexercisefunc(){
+
+    var pathname = window.location.pathname; // Returns path only
+
+        pathname = pathname.replace('/data/','');
+        window.console.log(pathname);
+    
+    var formdata = {
+        exercise: $('#ex1').val(),
+        description: $('#ex2').val(),
+        exset: $('#ex3').val(),
+        reps: $('#ex4').val()
+}
+    // JSON.stringify();
+
+    window.console.log(pathname);
+    $.ajax({
+        url: "http://localhost:3000/api/"+pathname+"/exercise",
+        method:'POST',
+        data: formdata,
+        error: function(jqXHR, textStatus, errorThrown){
+            window.console.log("An Error occured");
+            window.console.log(errorThrown);
+        },
+        success: function(data, textStatus, jqXHR){
+            window.console.log(data)
+        }
+      });
+}
+
+
 
 function doSomething() {
     

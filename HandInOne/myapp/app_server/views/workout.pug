@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+    a(href="localhost:3000") Home
+
+    h1 #{title}
+
+    p#wid #{workout._id}
+    p #{workout.name}
+
+
+    button.btn.btn-info.btn-lg(type='button' onclick='postexercisefunc()') New exercise
+    <input class="form-control col-md-3" id="ex1" placeholder="Exercise name..." type="text">
+    <input class="form-control col-md-3" id="ex2" placeholder="Exercise description..." type="text">
+    <input class="form-control col-md-3" id="ex3" placeholder="sets..." type="number">
+    <input class="form-control col-md-3" id="ex4" placeholder="Reps..." type="number">
+
+    each val in workout.exercises
+        p= val.exercise
+    else
+        p= "there are no exercises in this workout"
+
