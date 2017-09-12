@@ -23,7 +23,6 @@ module.exports.getOne = function(req, res){
           sendJSONresponse(res, 404, err);
           return;
         }
-        console.log(workout);
         sendJSONresponse(res, 200, workout);
       });
   } else {
@@ -46,7 +45,6 @@ module.exports.getOne = function(req, res){
   /* POST a new location */
 /* /api/locations */
 module.exports.post = function(req, res) {
-    console.log(req.body);
     wor.create({
       name: req.body.name
       }
@@ -55,7 +53,6 @@ module.exports.post = function(req, res) {
         console.log(err);
         sendJSONresponse(res, 400, err);
       } else {
-        console.log(workout);
         sendJSONresponse(res, 201, workout);
       }
     });

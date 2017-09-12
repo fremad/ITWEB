@@ -37,8 +37,6 @@ module.exports.singleworkout = function(req, res){
 
 module.exports.index = function(req, res){
     
-  console.log(req.body);
-
   var path = '/api';
 
   var requestOptions = { 
@@ -56,7 +54,6 @@ module.exports.index = function(req, res){
         }
         else
         {
-          console.log(body);
         }
         res.render('index', { title: 'ExerciseMe' , names: body});      
       })
@@ -70,12 +67,66 @@ module.exports.index = function(req, res){
     res.json(JSON.stringify(myvar))
   };
 
+  module.exports.addExercise = function(req, res){
+
+    console.log("ADD EXERCISE CALLED !!!!!!!!!!!!!!!!!!!")
+    var path = apiOptions.server +'/api/' + req.params.workoutid;
+    var workouid = req.params.workoutid;
+        var postdata = {
+          exercise: req.body.exercise,
+          description: req.body.description,
+          exset: parseInt(req.body.exset),
+          reps: parseInt(req.body.reps)
+        } 
+        
+        console.log(postdata);
+        console.log(path)
+
+          var requestOptions = { 
+            url : path+'/exercise',
+            method : "post",
+            json : postdata,
+            qs : {
+            }
+          };
+          request(
+            requestOptions,
+              function(err, response, body){
+                if(response.statusCode === 201) {
+                  res.redirect(apiOptions.server+'/data/'+workouid);      
+                }
+                else
+                {
+                  console.log("something went wrong");
+                }
+              })
+  
+  }
+
   module.exports.post = function(req, res){
     
-    var input = req.body.name;
+    console.log(req.body.name);
 
-    var myvar = {
-      name: input
-    };
-    res.json(JSON.stringify(myvar))
+    var path = '/api';
+
+    var postdata = {name: req.body.name} 
+    
+      var requestOptions = { 
+        url : apiOptions.server + path,
+        method : "post",
+        json : postdata,
+        qs : {
+        }
+      };
+      request(
+        requestOptions,
+          function(err, response, body){
+            if(response.statusCode === 201) {
+              res.redirect(apiOptions.server);      
+            }
+            else
+            {
+              console.log("something went wrong");
+            }
+          })
   };

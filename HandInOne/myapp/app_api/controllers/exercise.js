@@ -7,7 +7,6 @@ var sendJSONresponse = function(res, status, content) {
   };
 
 module.exports.post = function(req, res) {
-    console.log("wee");
     if (req.params.workoutid){
         wor
             .findById(req.params.workoutid)
