@@ -1,10 +1,8 @@
 var request = require('request');
 var apiOptions = {                      
-  server : "http://localhost:3000"      
+  server : "https://exerciseme.herokuapp.com"      
 };          
-if (process.env.NODE_ENV  === 'production') 
-  { apiOptions.server = "https://getting-mean-loc8r.herokuapp.com";
-}                            
+
 
 module.exports.singleworkout = function(req, res){
   
