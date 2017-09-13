@@ -1,3 +1,5 @@
+//Applicaton generally inspired by Getting mean by Simon Holmes
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');

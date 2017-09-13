@@ -8,7 +8,7 @@ var sendJSONresponse = function(res, status, content) {
 
 module.exports.getOne = function(req, res){
 
-  console.log('Finding location details', req.params);
+  console.log('Finding workout details', req.params);
   if (req.params && req.params.workoutid) {
     wor
       .findById(req.params.workoutid)
@@ -42,8 +42,6 @@ module.exports.getOne = function(req, res){
     })
   };
 
-  /* POST a new location */
-/* /api/locations */
 module.exports.post = function(req, res) {
     wor.create({
       name: req.body.name
@@ -76,7 +74,7 @@ module.exports.post = function(req, res) {
                 );
     } else {
         sendJSONresponse(res, 404, {
-            "message": "No locationid"
+            "message": "No workoutid"
         });
     }
   }
@@ -94,7 +92,7 @@ module.exports.post = function(req, res) {
         function(err, workout) {
           if (!workout) {
             sendJSONresponse(res, 404, {
-              "message": "locationid not found"
+              "message": "workoutid not found"
             });
             return;
           } else if (err) {
