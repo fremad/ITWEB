@@ -13,4 +13,3 @@ var workoutSchema = new mongoose.Schema({
 });
 
 mongoose.model('Workout', workoutSchema, 'Workouts');
-

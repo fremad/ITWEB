@@ -16,8 +16,6 @@ router
 
 
 router.post('/:workoutid/exercise', exercisecontroller.post);
-/* router
-    .route('/:workoutid/exerciseid')
-        .post(exercisecontroller.post) */
+
 
 module.exports = router;
