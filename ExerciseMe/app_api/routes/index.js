@@ -1,9 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var workoutctrl = require('../controllers/workout');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router
+    .route('/')
+    .get(workoutctrl.getAllworkouts)
+    .post(workoutctrl.addWorkout)
+
+router
+    .route('/:workoutid')
+    .get(workoutctrl.getWorkoutById)
+    .delete(workoutctrl.deleteWorkoutById)
 
 module.exports = router;
