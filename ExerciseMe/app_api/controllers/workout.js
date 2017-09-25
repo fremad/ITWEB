@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var wor = mongoose.model('Workout');
-var utils = require('../BLL/utility');
-var dbacces = require('../BLL/db/dbacces');
+var utils = require('../DAL/utility');
+var dbacces = require('../DAL/db/dbacces');
 
 
 module.exports.getWorkoutById = function (req, res) {
@@ -50,7 +50,7 @@ module.exports.addWorkout = function (req, res) {
     if (!tmp) {
         utils.sendJSONresponse(res, 404, { "message": "No correct input" })
     }
-    
+
     //Check for workoutid
     dbacces.addWorkout(tmp).then((data) => {
         if (!data) {
