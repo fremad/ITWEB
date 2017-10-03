@@ -3,7 +3,7 @@ var wor = mongoose.model('Workout');
 var utils = require('../DAL/utility');
 var dbacces = require('../DAL/db/dbacces');
 
-module.exports.addExercise  = function (req, res) { 
+module.exports.addExercise = function (req, res) {
 
     //Check for workoutid
     if (!(req.params && req.params.workoutid)) {
@@ -15,8 +15,6 @@ module.exports.addExercise  = function (req, res) {
         }
         utils.sendJSONresponse(res, 201, data);
     }).catch(err => {
-        utils.sendJSONresponse(res, 404, { "message": "No data found in DBs" })
+        utils.sendJSONresponse(res, 404, err.message)
     });
-
 }
-    

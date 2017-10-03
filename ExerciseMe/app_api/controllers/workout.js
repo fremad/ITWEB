@@ -16,7 +16,9 @@ module.exports.getWorkoutById = function (req, res) {
             utils.sendJSONresponse(res, 404, { "message": "No data found" })
         }
         utils.sendJSONresponse(res, 200, data);
-    })
+    }).catch(err => {
+        utils.sendJSONresponse(res, 404, err.message)
+    });
 };
 
 module.exports.getAllworkouts = function (req, res) {
@@ -26,7 +28,9 @@ module.exports.getAllworkouts = function (req, res) {
             utils.sendJSONresponse(res, 404, { "message": "No data found" })
         }
         utils.sendJSONresponse(res, 200, data);
-    })
+    }).catch(err => {
+        utils.sendJSONresponse(res, 404, err.message)
+    });
 
 };
 
@@ -39,7 +43,9 @@ module.exports.deleteWorkoutById = function (req, res) {
 
     dbacces.deleteWorkoutById(req.params.workoutid).then(() => {
         utils.sendJSONresponse(res, 204, null);
-    })
+    }).catch(err => {
+        utils.sendJSONresponse(res, 404, err.message)
+    });
 }
 
 module.exports.addWorkout = function (req, res) {
@@ -57,5 +63,7 @@ module.exports.addWorkout = function (req, res) {
             utils.sendJSONresponse(res, 404, { "message": "No data found" })
         }
         utils.sendJSONresponse(res, 201, data);
-    })
+    }).catch(err => {
+        utils.sendJSONresponse(res, 404,  err.message)
+    });
 };
