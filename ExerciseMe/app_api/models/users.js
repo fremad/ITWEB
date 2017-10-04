@@ -17,17 +17,22 @@ var userSchema = new mongoose.Schema({
 });
 
 
-const iteration = 10000;
-const hashsize = 128;
+const iteration = 1000;
+const hashsize = 64;
+const nrrandombytes = 8;
 
 userSchema.methods.setPassword = function(password){
-  this.salt = crypto.randomBytes(24).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, iteration, hashsize).toString('hex');
+  // this.salt = crypto.randomBytes(16).toString('hex');
+  // this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+  // this.salt = crypto.randomBytes(nrrandombytes).toString('hex');
+  // this.hash = crypto.pbkdf2Sync(password, this.salt, iteration, hashsize).toString('hex');
+  this.hash = password;
+  console.log('We got here');
 };
  
 userSchema.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, iteration, hashsize).toString('hex');
-  return this.hash === hash;
+  // var hash = crypto.pbkdf2Sync(password, this.salt, iteration, hashsize).toString('hex');
+  return this.hash === password;
 };
 
 userSchema.methods.generateJwt = function() {

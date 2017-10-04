@@ -15,15 +15,14 @@ router
     .get(workoutctrl.getAllworkouts)
     .post(workoutctrl.addWorkout)
 
-router
-    .route('/:workoutid')
-    .get(workoutctrl.getWorkoutById)
-    .delete(workoutctrl.deleteWorkoutById)
-
-router.post('/:workoutid/exercise', exercisectrl.addExercise);
-
-
-router.post('/register', authorizationctrl.register)
-router.post('/login', authorizationctrl.login)
-
+    router.post('/register', authorizationctrl.register)
+    router.post('/login', authorizationctrl.login)
+    
+    router
+        .route('/:workoutid')
+        .get(workoutctrl.getWorkoutById)
+        .delete(workoutctrl.deleteWorkoutById)
+    
+    router.post('/:workoutid/exercise', exercisectrl.addExercise);
+    
 module.exports = router;
