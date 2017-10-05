@@ -9,7 +9,6 @@ var utils = require('../DAL/utility');
 //   };
 
 module.exports.register = function (req, res) {
-
   if (!req.body.name || !req.body.email || !req.body.password) {
     utils.utils.sendJSONresponse(res, 400, {
       "message": "All fields required"
