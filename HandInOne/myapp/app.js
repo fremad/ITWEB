@@ -14,7 +14,8 @@ var routesApi = require('./app_api/routes/index');
 var app = express();
 
 // view engine setup
-app.use( express.static(__dirname + '/dist' ) );
+app.set('views', path.join(__dirname,'app_server' ,'views'));
+app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
